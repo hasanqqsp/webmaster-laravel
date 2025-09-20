@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,65 +12,63 @@
             </style>
         @endif
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <style>
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
-        }
-    </style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-    <header class="border-b-1 border-gray-300 bg-white ">
-        <div class="max-w-[1440px] mx-auto flex justify-between items-center py-6 ">
-            <h1 class="text-3xl font-bold">Webmaster E-commerce</h1>
-            <nav class="flex-1 ">
-                <ul class="nav-links flex justify-between gap-4 max-w-[24rem] mx-auto">
-                    <li><a href="../index.html" class="text-xl border-b-3 border-gray-400">Home</a></li>
-                    <li><a href="../contact.html" class="text-xl hover:underline">Contact</a></li>
-                    <li><a href="../about" class="text-xl hover:underline">About</a></li>
-                    @auth
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                        <button type="submit" class="text-xl hover:underline">Logout</button>
-                        </form>
-                    </li>
-                    @endauth
-                    @guest   
-                    <li><a href="../register" class="text-xl hover:underline">Sign Up</a></li>
-                    @endguest
-                </ul>
-            </nav>
-
-            <div class="flex gap-5 items-center">
-                <input type="text" placeholder="What are you Looking For" id="input-search"
-                    class="w-full p-2 bg-[#f5f5f5]  focus:outline-none focus:ring-2 focus:ring-gray-500" />
-                <a href=""><i class="bi bi-heart  text-2xl"></i></a>
-                <a href=""> <i class="bi bi-cart3  text-2xl"></i></a>
-                <a href=""><i class="bi bi-person text-2xl"></i>@auth
-                    {{ auth()->user()->name}}
-                @endauth </a>
-            </div>
-
+<header class="border-b-1 border-gray-300 bg-white ">
+    <div class="max-w-[1440px] mx-auto flex justify-between items-center py-6 ">
+        <h1 class="text-3xl font-bold">Webmaster E-commerce</h1>
+        <nav class="flex-1 ">
+            <ul class="nav-links flex justify-between gap-4 max-w-[24rem] mx-auto">
+                <li><a href="../index.html" class="text-xl hover:underline">Home</a></li>
+                <li><a href="../contact.html" class="text-xl hover:underline">Contact</a></li>
+                <li><a href="../about" class="text-xl hover:underline">About</a></li>
+                <li><a href="../register" class="text-xl hover:underline">Sign Up</a></li>
+            </ul>
+        </nav>
+    
+        <div>
+            <input type="text" placeholder="What are you Looking For" id="input-search" class="w-full p-2 bg-[#f5f5f5]  focus:outline-none focus:ring-2 focus:ring-gray-500" />
         </div>
-    </header>
-    <main>
-       {{ $slot }}
-    </main>
-    <footer></footer>
-</body>
+        
+    </div>
+</header>
+<main>
+    <div class="max-w-[1600px] mx-auto flex justify-center items-center ">
+        <div class="w-full flex items-center gap-10 justify-center my-20">
+            <div class="flex-3">
+                <img src="../assets/images/dl.beatsnoop 1.png" alt="" >
+            </div>
+            <div class="flex-2">
+                <h2 class="text-5xl mb-5  font-semibold">Create an account</h2>
+                <p class="mb-10 font-semibold">Enter your details below</p>
 
+                <form action="{{ route("register") }}" method="POST" class="flex flex-col gap-5">
+                    @csrf
+                    <input type="text" placeholder="Name" class="outline-none border-b-1 border-gray-300 text-lg pt-4 pb-2 w-full" name="name" />
+                    @error('name')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                    <input type="text" placeholder="Email or Phone Number" class="outline-none border-b-1 border-gray-300 text-lg pt-4 pb-2 w-full" name="email" />
+                    @error('email')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                    <input type="password" placeholder="Password" class="outline-none border-b-1 border-gray-300 text-lg pt-4 pb-2 w-full" name="password" />
+                    @error('password')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                    <button type="submit" class="bg-red-500 py-3 px-6 text-white text-lg w-full">Create Account</button> 
+                    <button class=" py-3 px-6 text-black text-lg w-full border-1">Sign up with Google</button> 
+
+                    <p class="text-gray-300 text-center text-lg">Already have account? <a href="../login" class="ml-2 text-black hover:underline">Log In</a>    </p>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer></footer>
+</body>
 </html>

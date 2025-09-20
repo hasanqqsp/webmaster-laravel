@@ -15,9 +15,6 @@
                         </tr>
                     </thead>
                     <tbody class="cart-items"></tbody>
-
-                    
-                    
                 </table>
             </section>
             <section class="cart-total flex justify-end w-full mt-10">
